@@ -1,0 +1,46 @@
+.sign-form {
+  color: #4a4a4a;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%; }
+  @media (min-width: 64em) {
+    .sign-form {
+      width: 80%;
+      margin-left: 10%;
+      margin-right: 10%; } }
+  .sign-form__entry {
+    font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+    margin-bottom: 1rem;
+    margin-left: 5%;
+    margin-right: 5%; }
+    @media (min-width: 64em) {
+      .sign-form__entry {
+        margin-bottom: 2rem;
+        margin-left: 20%;
+        margin-right: 20%;
+        width: 60%; } }
+    .sign-form__entry__field {
+      font-weight: bold;
+      margin-bottom: 0.5rem; }
+    .sign-form__entry__input {
+      border: 1px solid rgba(0, 0, 0, 0.125);
+      border-radius: 5px;
+      font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+      font-size: 20px;
+      height: 3rem;
+      letter-spacing: 2px;
+      width: 100%; }
+  .sign-form__message {
+    font-size: 24px;
+    font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+    font-weight: bold;
+    color: #DD2C00;
+    margin-bottom: 1rem; }
+  .sign-form__submit {
+    padding-top: 3.5rem;
+    margin-bottom: 2rem; }
+  .sign-form__option {
+    font-size: 20px;
+    font-family: "Raleway", "Helvetica Neue", Arial, sans-serif; }
+  .sign-form__flash {
+    color: red; }
