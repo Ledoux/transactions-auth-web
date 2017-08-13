@@ -1,8 +1,10 @@
 import LogoutLink from './LogoutLink'
 import SignForm from './SignForm'
+import TourButton from './TourButton'
 
 const ComponentsByComponentName = { LogoutLink,
-  SignForm
+  SignForm,
+  TourButton
 }
 
 export default ComponentsByComponentName
