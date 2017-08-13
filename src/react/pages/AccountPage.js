@@ -4,11 +4,12 @@ const { apiFetch,
   getTransactionsProps,
   showModalWarning
 } = require('transactions-interface-state').default
-import { Avatar,
+const { Avatar,
   Button,
-  LogoutLink,
   Uploader
-} from 'transactions-interface-web'
+} = require('transactions-interface-web').default
+
+import LogoutLink from '../components/LogoutLink'
 
 class AccountPage extends Component {
   constructor () {

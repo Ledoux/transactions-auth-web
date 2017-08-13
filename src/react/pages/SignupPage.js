@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { SignForm } from 'transactions-interface-web'
+
+import SignForm from '../components/SignForm'
 
 const SignupPage = ({ data,
   message
