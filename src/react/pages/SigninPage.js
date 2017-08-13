@@ -7,7 +7,7 @@ const SigninPage = ({ data,
 }) => {
   return (<main className='page signin-page main'>
     <p className='signin-page__title'>
-      Log to your fact-checker account!
+      Log to your account!
     </p>
     <SignForm endpoint='signin' data={data} message={message} />
   </main>)

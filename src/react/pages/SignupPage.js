@@ -2,8 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { SignForm } from 'transactions-interface-web'
 
-const SignupPage = ({
-  data,
+const SignupPage = ({ data,
   message
 }) => {
   return (<main className='page signup-page main'>

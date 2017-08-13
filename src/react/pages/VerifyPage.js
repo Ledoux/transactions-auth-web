@@ -7,8 +7,6 @@ import { Button,
   Icon
 } from 'transactions-interface-web'
 
-import { SIGN_PATH } from '../../utils/apis'
-
 class VerifyPage extends Component {
   constructor (props) {
     super(props)
@@ -18,7 +16,9 @@ class VerifyPage extends Component {
     }
   }
   componentDidMount () {
-    const { setActiveUser } = this.props
+    const { setActiveUser,
+      signPath
+    } = this.props
     const code = (window.location.search.match(/code=([^&]*)/) || [null, null])[1]
     if (!code) {
       return
@@ -27,7 +27,7 @@ class VerifyPage extends Component {
       code,
       loading: true
     })
-    apiFetch(`${SIGN_PATH}/activate-account`, {
+    apiFetch(`${signPath}/activate-account`, {
       method: 'post',
       body: JSON.stringify({code})
     })

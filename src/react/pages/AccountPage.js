@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 const { apiFetch,
+  getTransactionsProps,
   showModalWarning
 } = require('transactions-interface-state').default
 import { Avatar,
@@ -8,20 +9,6 @@ import { Avatar,
   LogoutLink,
   Uploader
 } from 'transactions-interface-web'
-
-import { requestTransactions } from '../../reducers/transactions'
-import { SIGN_PATH } from '../../utils/apis'
-
-const fields = [{
-  key: 'firstName',
-  name: 'First Name'
-}, {
-  key: 'lastName',
-  name: 'Last Name'
-}, {
-  key: 'email',
-  name: 'Email'
-}]
 
 class AccountPage extends Component {
   constructor () {
@@ -31,10 +18,13 @@ class AccountPage extends Component {
   render () {
     const { active,
       email,
+      dispatch,
+      fields,
       firstName,
       id,
       lastName,
       requestTransactions,
+      signPath,
       showModalWarning
     } = this.props
     const { isUpload } = this.state
@@ -42,7 +32,7 @@ class AccountPage extends Component {
       <div className='account-page__title'>
         {firstName} {lastName} <LogoutLink
           className='logout-link account-page__logout'
-          signPath={SIGN_PATH}
+          signPath={signPath}
         />
       </div>
       <div className='account-page__control'>
@@ -68,11 +58,11 @@ class AccountPage extends Component {
                 isWithDate
                 onUpload={json => {
                   this.setState({ isUpload: false })
-                  json.url && requestTransactions('PUT', [{
+                  json.url && dispatch(requestTransactions('PUT', [{
                     collectionName: 'users',
                     query: { id },
                     update: { 'local.imageUrl': json.url }
-                  }])
+                  }]))
                 }}
               >
                 <p className='account-page__picture__button--uploader__text'>
@@ -98,8 +88,8 @@ class AccountPage extends Component {
           className='button'
           onClick={() => {
             apiFetch(`${SIGN_PATH}/ask-activate-account`)
-            showModalWarning('happy',
-              `We sent you a new activation email at ${email}`)
+            dispatch(showModalWarning('happy',
+              `We sent you a new activation email at ${email}`))
           }}>
           Send Mail
         </Button>
@@ -121,6 +111,19 @@ class AccountPage extends Component {
   }
 }
 
+AccountPage.defaultProps = {
+  fiels: [{
+    key: 'firstName',
+    name: 'First Name'
+  }, {
+    key: 'lastName',
+    name: 'Last Name'
+  }, {
+    key: 'email',
+    name: 'Email'
+  }]
+}
+
 const mapStateToProps = ({ user: {
   active,
   email,
@@ -136,9 +139,8 @@ const mapStateToProps = ({ user: {
     lastName
   }
 }
-export default connect(
-  mapStateToProps, {
-    requestTransactions,
-    showModalWarning
+export default connect(mapStateToProps, dispatch => {
+  return {
+    dispatch
   }
-)(AccountPage)
+})(AccountPage)
