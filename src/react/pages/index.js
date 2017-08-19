@@ -3,10 +3,8 @@ import SigninPage from './SigninPage'
 import SignupPage from './SignupPage'
 import VerifyPage from './VerifyPage'
 
-const PageComponentsByComponentName = { AccountPage,
+export { AccountPage,
   SigninPage,
   SignupPage,
   VerifyPage
 }
-
-export default PageComponentsByComponentName

@@ -1,9 +1,3 @@
-const ComponentsByComponentName = require('./react/components').default
-const PageComponentsByComponentName = require('./react/pages').default
-
-const transactionsUserWeb = Object.assign({},
-  ComponentsByComponentName,
-  PageComponentsByComponentName
-)
-
-export default transactionsUserWeb
+export * from './react/components'
+export * from './react/pages'
+export * from './react/sections'

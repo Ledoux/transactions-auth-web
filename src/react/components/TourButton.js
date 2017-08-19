@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-const { apiFetch,
+import { apiFetch,
   getUpdatedSearchString
-} = require('transactions-interface-state').default
-const { Button } = require('transactions-interface-web').default
+} from 'transactions-interface-state'
+import { Button } from 'transactions-interface-web'
 
 class TourButton extends Component {
   constructor () {
@@ -36,7 +36,8 @@ class TourButton extends Component {
   render () {
     const { className,
       email,
-      path
+      path,
+      text
     } = this.props
     return (
       <Button
@@ -51,10 +52,14 @@ class TourButton extends Component {
         }
       }
       >
-        Take a tour
+        { text }
       </Button>
     )
   }
+}
+
+TourButton.defaultProps = {
+  text: 'Take a tour'
 }
 
 function mapStateToProps({

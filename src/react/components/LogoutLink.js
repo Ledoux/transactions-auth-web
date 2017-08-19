@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-const { closeModal,
+import { closeModal,
   showModal
-} = require('transactions-interface-state').default
-const { Button,
+} from 'transactions-interface-state'
+import { Button,
   Link
-} = require('transactions-interface-web').default
+} from 'transactions-interface-web'
 
 const LogoutLink = ({ afterShowModal,
   className,

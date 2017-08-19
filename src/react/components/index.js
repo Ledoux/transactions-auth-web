@@ -1,10 +1,10 @@
 import LogoutLink from './LogoutLink'
 import SignForm from './SignForm'
 import TourButton from './TourButton'
+import TourSlide from './TourSlide'
 
-const ComponentsByComponentName = { LogoutLink,
+export { LogoutLink,
   SignForm,
-  TourButton
+  TourButton,
+  TourSlide
 }
-
-export default ComponentsByComponentName

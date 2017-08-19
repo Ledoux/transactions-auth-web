@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-const { apiFetch,
+import { apiFetch,
   setActiveUser
-} = require('transactions-interface-state').default
-const { Button,
+} from 'transactions-interface-state'
+import { Button,
   Icon
-} = require('transactions-interface-web').default
+} from 'transactions-interface-web'
 
 class VerifyPage extends Component {
   constructor (props) {

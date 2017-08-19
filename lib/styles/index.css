@@ -55,6 +55,26 @@
   .sign-form__flash {
     color: red; }
 
+.tour-slide {
+  border-radius: 0.25rem;
+  padding: 2.5rem;
+  overflow-y: hidden;
+  transition: all 0.4s ease-out; }
+  @media (min-width: 52em) {
+    .tour-slide {
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%; } }
+  .tour-slide__left__title {
+    color: #4a4a4a;
+    margin-bottom: 1rem; }
+  .tour-slide__right__avatar {
+    height: 5rem;
+    width: 5rem; }
+
+.tours-section__title {
+  color: #4a4a4a; }
+
 .account-page {
   color: #4a4a4a;
   font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;

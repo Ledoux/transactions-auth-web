@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-const { apiFetch,
+import { apiFetch,
   getTransactionsProps,
   showModalWarning
-} = require('transactions-interface-state').default
-const { Avatar,
+} from 'transactions-interface-state'
+import { Avatar,
   Button,
   Uploader
-} = require('transactions-interface-web').default
+} from 'transactions-interface-web'
 
 import LogoutLink from '../components/LogoutLink'
 
@@ -113,16 +113,20 @@ class AccountPage extends Component {
 }
 
 AccountPage.defaultProps = {
-  fiels: [{
-    key: 'firstName',
-    name: 'First Name'
-  }, {
-    key: 'lastName',
-    name: 'Last Name'
-  }, {
-    key: 'email',
-    name: 'Email'
-  }]
+  fields: [
+    {
+      key: 'firstName',
+      name: 'First Name'
+    },
+    {
+      key: 'lastName',
+      name: 'Last Name'
+    },
+    {
+      key: 'email',
+      name: 'Email'
+    }
+  ]
 }
 
 const mapStateToProps = ({ user: {
