@@ -16,8 +16,8 @@ class VerifyPage extends Component {
     }
   }
   componentDidMount () {
-    const { setActiveUser,
-      signPath
+    const { api,
+      setActiveUser
     } = this.props
     const code = (window.location.search.match(/code=([^&]*)/) || [null, null])[1]
     if (!code) {
@@ -27,7 +27,7 @@ class VerifyPage extends Component {
       code,
       loading: true
     })
-    apiFetch(`${signPath}/activate-account`, {
+    apiFetch(`${api.signPath}/activate-account`, {
       method: 'post',
       body: JSON.stringify({code})
     })
@@ -90,4 +90,8 @@ class VerifyPage extends Component {
   </main>)}
 }
 
-export default connect(null, {setActiveUser})(VerifyPage)
+VerifyPage.defaultProps = {
+  api: { signPath: '/sign' }
+}
+
+export default connect(null, { setActiveUser })(VerifyPage)

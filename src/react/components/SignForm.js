@@ -188,7 +188,6 @@ class SignForm extends Component {
     }
 }
 
-export default connect(null, {
-  closeModal,
+export default connect(null, { closeModal,
   showModalWarning
 })(SignForm)

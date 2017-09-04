@@ -18,6 +18,7 @@ class AccountPage extends Component {
   }
   render () {
     const { active,
+      api,
       email,
       dispatch,
       fields,
@@ -33,7 +34,7 @@ class AccountPage extends Component {
       <div className='account-page__title'>
         {firstName} {lastName} <LogoutLink
           className='logout-link account-page__logout'
-          signPath={signPath}
+          signPath={api.signPath}
         />
       </div>
       <div className='account-page__control'>
@@ -59,11 +60,11 @@ class AccountPage extends Component {
                 isWithDate
                 onUpload={json => {
                   this.setState({ isUpload: false })
-                  json.url && dispatch(requestTransactions('PUT', [{
+                  json.url && requestTransactions('PUT', [{
                     collectionName: 'users',
                     query: { id },
                     update: { 'local.imageUrl': json.url }
-                  }]))
+                  }])
                 }}
               >
                 <p className='account-page__picture__button--uploader__text'>
@@ -88,9 +89,9 @@ class AccountPage extends Component {
           <Button
           className='button'
           onClick={() => {
-            apiFetch(`${SIGN_PATH}/ask-activate-account`)
-            dispatch(showModalWarning('happy',
-              `We sent you a new activation email at ${email}`))
+            apiFetch(`${signPath}/ask-activate-account`)
+            showModalWarning('happy',
+              `We sent you a new activation email at ${email}`)
           }}>
           Send Mail
         </Button>
@@ -112,7 +113,7 @@ class AccountPage extends Component {
   }
 }
 
-AccountPage.defaultProps = {
+AccountPage.defaultProps = { api: { signPath: '/sign' },
   fields: [
     {
       key: 'firstName',
@@ -136,16 +137,11 @@ const mapStateToProps = ({ user: {
   id,
   lastName
 }}) => {
-  return {
-    active,
+  return { active,
     email,
     firstName,
     id,
     lastName
   }
 }
-export default connect(mapStateToProps, dispatch => {
-  return {
-    dispatch
-  }
-})(AccountPage)
+export default connect(mapStateToProps, { showModalWarning })(AccountPage)

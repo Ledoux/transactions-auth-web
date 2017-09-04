@@ -14,7 +14,8 @@ class TourButton extends Component {
     const { email,
       helpersCollectionName,
       history,
-      userEmail } = this.props
+      userEmail
+    } = this.props
     if (email === userEmail) {
       if (history) {
         history.push({
@@ -43,6 +44,7 @@ class TourButton extends Component {
       <Button
         className={className || 'button button--alive button--cta'}
         onClick={() => {
+          console.log('email', email, path)
           apiFetch(path, {
             method: 'POST',
             body: JSON.stringify({
@@ -62,8 +64,7 @@ TourButton.defaultProps = {
   text: 'Take a tour'
 }
 
-function mapStateToProps({
-  user: {
+function mapStateToProps({ user: {
     email
   }
 }) {

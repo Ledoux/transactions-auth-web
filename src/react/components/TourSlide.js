@@ -13,6 +13,7 @@ const TourSlide = ({ email,
   path,
   tour
 }) => {
+  console.log('path', path)
   return (
     <div className='tour-slide'>
       <div className='tour-slide__left md-col md-col-6'>
