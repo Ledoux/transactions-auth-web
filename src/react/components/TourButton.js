@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 import { apiFetch,
   getUpdatedSearchString
 } from 'transactions-interface-state'
@@ -13,19 +14,15 @@ class TourButton extends Component {
   _handleTourRequest () {
     const { email,
       helpersCollectionName,
-      history,
+      push,
       userEmail
     } = this.props
     if (email === userEmail) {
-      if (history) {
-        history.push({
-          search: getUpdatedSearchString({
-            helpersCollectionName
-          })
+      push({
+        search: getUpdatedSearchString({
+          helpersCollectionName
         })
-      } else {
-        console.warn('TourButton has no history function defined')
-      }
+      })
     }
   }
   componentDidMount () {
@@ -64,12 +61,7 @@ TourButton.defaultProps = {
   text: 'Take a tour'
 }
 
-function mapStateToProps({ user: {
-    email
-  }
-}) {
-  return {
-    userEmail: email
-  }
+function mapStateToProps({ user: { email } }) {
+  return { userEmail: email }
 }
-export default connect(mapStateToProps)(TourButton)
+export default connect(mapStateToProps, { push })(TourButton)

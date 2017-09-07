@@ -6,14 +6,12 @@ import TourButton from './TourButton'
 const TourSlide = ({ email,
   firstName,
   helpersCollectionName,
-  history,
   imageUrl,
   lastName,
   modeName,
   path,
   tour
 }) => {
-  console.log('path', path)
   return (
     <div className='tour-slide'>
       <div className='tour-slide__left md-col md-col-6'>
@@ -29,7 +27,6 @@ const TourSlide = ({ email,
         </div>
         <TourButton
           email={email}
-          history={history}
           helpersCollectionName={helpersCollectionName}
           path={path}
           text='login'

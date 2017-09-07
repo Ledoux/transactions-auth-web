@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 import { closeModal,
   showModalWarning
 } from 'transactions-interface-state'
@@ -57,12 +58,12 @@ class SignForm extends Component {
   }
   componentDidMount () {
     const { returnMessage } = this.state
-    const { history,
+    const { push,
       showModalWarning
     } = this.props
     if (returnMessage) {
       showModalWarning('exclamation', returnMessage)
-      history.push(window.location.pathname)
+      push(window.location.pathname)
       this.setState({returnMessage: null})
     }
   }
@@ -189,5 +190,6 @@ class SignForm extends Component {
 }
 
 export default connect(null, { closeModal,
-  showModalWarning
+  showModalWarning,
+  push
 })(SignForm)

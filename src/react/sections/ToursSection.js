@@ -5,21 +5,19 @@ import { Carousel,
 
 import TourSlide from '../components/TourSlide'
 
-const ToursSection = ({ history,
-  users,
+const ToursSection = ({ users,
   path
 }) => {
+  const slides = users && users.sort((a,b) => a.sortIndex - b.sortIndex)
   return (
     <Section extraClass='tours-section center'>
       <p className='tours-section__title h1 bold mb2'>
         Take a tour
       </p>
       <Carousel
-        slides={users}
+        slides={slides}
         slideRenderFn={props => {
-          return <TourSlide
-            history={history}
-            path={path}
+          return <TourSlide path={path}
             {...props}
           />
         }}

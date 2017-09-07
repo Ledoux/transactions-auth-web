@@ -8,6 +8,7 @@ import { Avatar,
   Button,
   Uploader
 } from 'transactions-interface-web'
+import { request } from 'transactions-redux-request'
 
 import LogoutLink from '../components/LogoutLink'
 
@@ -25,7 +26,7 @@ class AccountPage extends Component {
       firstName,
       id,
       lastName,
-      requestTransactions,
+      request,
       signPath,
       showModalWarning
     } = this.props
@@ -60,7 +61,7 @@ class AccountPage extends Component {
                 isWithDate
                 onUpload={json => {
                   this.setState({ isUpload: false })
-                  json.url && requestTransactions('PUT', [{
+                  json.url && request('PUT', [{
                     collectionName: 'users',
                     query: { id },
                     update: { 'local.imageUrl': json.url }
@@ -144,4 +145,6 @@ const mapStateToProps = ({ user: {
     lastName
   }
 }
-export default connect(mapStateToProps, { showModalWarning })(AccountPage)
+export default connect(mapStateToProps, { request,
+  showModalWarning
+})(AccountPage)
