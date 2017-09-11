@@ -1,122 +1,62 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { push } from 'react-router-redux'
-import { closeModal,
-  showModalWarning
-} from 'transactions-interface-state'
+import React from 'react'
 import { Button,
   Link
 } from 'transactions-interface-web'
+import { SignForm as withState } from 'transactions-user-state'
 
-function getReturnState () {
-  let returnTo
-  let returnMessage
-  const search = window.location.search
-  returnTo = (search.match(/returnTo=([^&]*)/) || [null, null])[1]
-  returnMessage = (search.match(/returnMessage=([^&]*)/) || [null, null])[1]
-  if (returnMessage) {
-    returnMessage = decodeURIComponent(returnMessage)
-  }
-  return {
-    returnTo,
-    returnMessage
-  }
-}
-
-class SignForm extends Component {
-  constructor () {
-    super()
-    const { returnMessage, returnTo } = getReturnState()
-    // it is important to initialize email and password with empty
-    // string to make already the input components as controlled component
-    // otherwise you will get this typical 'switched from uncontrolled' to 'controlled'
-    // component from React error logs when you type text inside the input
-    this.state = {
-      email: '',
-      firstName: '',
-      lastName: '',
-      password: '',
-      subscription: {
-        selector: false,
-        reviewer: false,
-        editor: false
-      },
-      returnMessage,
-      returnTo
-    }
-    this.handleChangeValue = this._handleChangeValue.bind(this)
-    this.handleClickCheckValue = this._handleClickCheckValue.bind(this)
-  }
-  _handleChangeValue (event, key) {
-    this.setState({[key]: event.target.value})
-  }
-  _handleClickCheckValue (key, value) {
-    const oldContent = this.state[key]
-    this.setState({[key]: Object.assign(oldContent, {
-      [value]: !oldContent[value]
-    })})
-  }
-  componentDidMount () {
-    const { returnMessage } = this.state
-    const { push,
-      showModalWarning
-    } = this.props
-    if (returnMessage) {
-      showModalWarning('exclamation', returnMessage)
-      push(window.location.pathname)
-      this.setState({returnMessage: null})
-    }
-  }
-  render () {
-    const { handleChangeValue,
-      handleClickCheckValue
-    } = this
-    const { data,
-      email,
-      endpoint,
-      firstName,
-      lastName,
-      message,
-      password,
-      returnMessage,
-      returnTo,
-      signPath
-    } = this.props
-    const isSignup = endpoint === 'signup'
-    const isSignin = endpoint === 'signin'
-    return (<form className='sign-form p3'
+const SignForm = ({ data,
+  email,
+  endpoint,
+  firstName,
+  handleChangeValue,
+  handleClickCheckValue,
+  lastName,
+  message,
+  password,
+  returnMessage,
+  returnTo,
+  signPath
+}) => {
+  const isSignup = endpoint === 'signup'
+  const isSignin = endpoint === 'signin'
+  return (
+    <form className='sign-form p3'
       method='post'
       action={`${signPath}/${endpoint}`}
     >
       {
-        isSignup && (<div className='sign-form__entry'>
-          <p className='sign-form__entry__field'>
-            First Name
-          </p>
-          <input
-            className='sign-form__entry__input field'
-            name='firstName'
-            type='text'
-            value={firstName}
-            onChange={event => handleChangeValue(event, 'firstName')}
-            required
-          />
-        </div>)
+        isSignup && (
+          <div className='sign-form__entry'>
+            <p className='sign-form__entry__field'>
+              First Name
+            </p>
+            <input
+              className='sign-form__entry__input field'
+              name='firstName'
+              type='text'
+              value={firstName}
+              onChange={event => handleChangeValue(event, 'firstName')}
+              required
+            />
+          </div>
+        )
       }
       {
-        isSignup && (<div className='sign-form__entry'>
-          <p className='sign-form__entry__field'>
-            Last Name
-          </p>
-          <input
-            className='sign-form__entry__input field'
-            name='lastName'
-            type='text'
-            value={lastName}
-            onChange={event => handleChangeValue(event, 'lastName')}
-            required
-          />
-        </div>)
+        isSignup && (
+          <div className='sign-form__entry'>
+            <p className='sign-form__entry__field'>
+              Last Name
+            </p>
+            <input
+              className='sign-form__entry__input field'
+              name='lastName'
+              type='text'
+              value={lastName}
+              onChange={event => handleChangeValue(event, 'lastName')}
+              required
+            />
+          </div>
+        )
       }
       <div className='sign-form__entry'>
         <p className='sign-form__entry__field'>
@@ -144,11 +84,11 @@ class SignForm extends Component {
           required
         />
         {
-          isSignin && <Link
-            href={`/forgot-password${email ? `?email=${encodeURIComponent(email)}` : ''}`}
-          >
-            Forgot Password ?
-          </Link>
+          isSignin && (
+            <Link href={`/forgot-password${email ? `?email=${encodeURIComponent(email)}` : ''}`} >
+              Forgot Password ?
+            </Link>
+          )
         }
       </div>
       <div className='sign-form__message center'>
@@ -165,31 +105,33 @@ class SignForm extends Component {
       </div>
       <div className='sign-form__option center'>
         {
-          isSignin && (<div className='center'>
-            No account?{' '}
-            <Link
-              className='link'
-              href='/signup'
-            >
-              Sign up
-            </Link>
-          </div>)
+          isSignin && (
+            <div className='center'>
+              No account?{' '}
+              <Link
+                className='link'
+                href='/signup'
+              >
+                Sign up
+              </Link>
+            </div>
+          )
         }
-        { isSignup && <div className='center'>
-            Already have an account?{' '}
-            <Link
-              href={`/signin${returnTo ? '?returnTo=' + returnTo : ''}`}
-            >
-              Sign In
-            </Link>
-          </div>
+        {
+          isSignup && (
+            <div className='center'>
+              Already have an account?{' '}
+              <Link
+                href={`/signin${returnTo ? '?returnTo=' + returnTo : ''}`}
+              >
+                Sign In
+              </Link>
+            </div>
+          )
         }
       </div>
-    </form>)
-    }
+    </form>
+  )
 }
 
-export default connect(null, { closeModal,
-  showModalWarning,
-  push
-})(SignForm)
+export default withState(SignForm)

@@ -1,60 +1,18 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { apiFetch,
-  setActiveUser
-} from 'transactions-interface-state'
+import React from 'react'
 import { Button,
   Icon
 } from 'transactions-interface-web'
+import { VerifyPage as withState } from 'transactions-user-state'
 
-class VerifyPage extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      loading: false,
-      success: false
-    }
-  }
-  componentDidMount () {
-    const { api,
-      setActiveUser
-    } = this.props
-    const code = (window.location.search.match(/code=([^&]*)/) || [null, null])[1]
-    if (!code) {
-      return
-    }
-    this.setState({
-      code,
-      loading: true
-    })
-    apiFetch(`${api.signPath}/activate-account`, {
-      method: 'post',
-      body: JSON.stringify({code})
-    })
-    .then(({error, user}) => {
-      if (error) {
-        this.setState({
-          loading: false,
-          error
-        })
-        return
-      }
-      this.setState({
-        loading: false,
-        success: true
-      })
-      setActiveUser()
-    })
-    .catch(err => {
-      this.setState({
-        loading: false,
-        error: err
-      })
-    })
-  }
-  render () {
-    const {code, error, loading, success} = this.state
-    return (<main className='page verify-page main'>
+const VerifyPage = ({ code,
+  state
+}) => {
+  const { error,
+    loading,
+    success
+  } = state
+  return (
+    <main className='page verify-page main'>
       <h1 className='verify-page__title h2 center'>
         Account Status
       </h1>
@@ -87,11 +45,8 @@ class VerifyPage extends Component {
           </div>
         </div>
       }
-  </main>)}
+    </main>
+  )
 }
 
-VerifyPage.defaultProps = {
-  api: { signPath: '/sign' }
-}
-
-export default connect(null, { setActiveUser })(VerifyPage)
+export default withState(VerifyPage)
