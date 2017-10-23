@@ -1,7 +1,10 @@
 .tour-slide {
   border-radius: $border-radius;
-  padding: 2.5rem;
+  height: 55vh;
   overflow-y: hidden;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  padding-top: 7.5rem;
   @media (min-width: $md) {
     margin-left: auto;
     margin-right: auto;

@@ -25,17 +25,14 @@ const TourSlide = ({ email,
               )
             }
         </div>
-        <TourButton
-          email={email}
+        <TourButton email={email}
           helpersCollectionName={helpersCollectionName}
           path={path}
-          text='login'
-        />
+          text='login' />
       </div>
       <div className='tour-slide__right md-col md-col-6 flex justify-center'>
         <Avatar className='avatar tour-slide__right__avatar'
-          imageUrl={imageUrl}
-        />
+          imageUrl={imageUrl} />
       </div>
     </div>
   )

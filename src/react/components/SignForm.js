@@ -3,6 +3,7 @@ import { Button,
   Link
 } from 'transactions-interface-web'
 import { SignForm as withState } from 'transactions-user-state'
+import path from 'path'
 
 const SignForm = ({ data,
   email,
@@ -15,29 +16,28 @@ const SignForm = ({ data,
   password,
   returnMessage,
   returnTo,
-  signPath
+  routePath
 }) => {
   const isSignup = endpoint === 'signup'
   const isSignin = endpoint === 'signin'
+  const action = path.join(routePath, endpoint)
   return (
     <form className='sign-form p3'
       method='post'
-      action={`${signPath}/${endpoint}`}
-    >
+      action={action} >
+      <input type='hidden' name='returnTo' value={returnTo} />
       {
         isSignup && (
           <div className='sign-form__entry'>
             <p className='sign-form__entry__field'>
               First Name
             </p>
-            <input
-              className='sign-form__entry__input field'
+            <input className='sign-form__entry__input field'
               name='firstName'
               type='text'
               value={firstName}
               onChange={event => handleChangeValue(event, 'firstName')}
-              required
-            />
+              required />
           </div>
         )
       }
@@ -47,14 +47,12 @@ const SignForm = ({ data,
             <p className='sign-form__entry__field'>
               Last Name
             </p>
-            <input
-              className='sign-form__entry__input field'
+            <input className='sign-form__entry__input field'
               name='lastName'
               type='text'
               value={lastName}
               onChange={event => handleChangeValue(event, 'lastName')}
-              required
-            />
+              required />
           </div>
         )
       }
@@ -62,27 +60,23 @@ const SignForm = ({ data,
         <p className='sign-form__entry__field'>
           Email
         </p>
-        <input
-          className='sign-form__entry__input field'
+        <input className='sign-form__entry__input field'
           name='email'
           type='text'
           value={email}
           onChange={event => handleChangeValue(event, 'email')}
-          required
-        />
+          required />
       </div>
       <div className='sign-form__entry'>
         <p className='sign-form__entry__field'>
           Password
         </p>
-        <input
-          className='sign-form__entry__input mb1'
+        <input className='sign-form__entry__input mb1'
           name='password'
           type='password'
           value={password}
           onChange={event => handleChangeValue(event, 'password')}
-          required
-        />
+          required />
         {
           isSignin && (
             <Link href={`/forgot-password${email ? `?email=${encodeURIComponent(email)}` : ''}`} >
@@ -95,10 +89,8 @@ const SignForm = ({ data,
         { message }
       </div>
       <div className='sign-form__submit center'>
-        <Button
-          className='button button--alive button--cta'
-          type='submit'
-        >
+        <Button className='button button--alive button--cta'
+          type='submit' >
           { isSignin && 'Sign In' }
           { isSignup && 'Sign Up' }
         </Button>
@@ -108,10 +100,8 @@ const SignForm = ({ data,
           isSignin && (
             <div className='center'>
               No account?{' '}
-              <Link
-                className='link'
-                href='/signup'
-              >
+              <Link className='link'
+                href='/signup' >
                 Sign up
               </Link>
             </div>
@@ -121,9 +111,7 @@ const SignForm = ({ data,
           isSignup && (
             <div className='center'>
               Already have an account?{' '}
-              <Link
-                href={`/signin${returnTo ? '?returnTo=' + returnTo : ''}`}
-              >
+              <Link href={`${action}${returnTo ? ('?returnTo=' + returnTo) : ''}`} >
                 Sign In
               </Link>
             </div>

@@ -17,6 +17,7 @@ const AccountPage = props => {
     fields,
     firstName,
     id,
+    imageUrl,
     lastName,
     request,
     signPath,
@@ -66,9 +67,9 @@ const AccountPage = props => {
                 </p>
               </Uploader>
             )
-            : <Avatar
-              className='avatar account-page__picture__button--avatar'
-              id={id} />
+            : <Avatar className='avatar account-page__picture__button--avatar'
+                id={id}
+                imageUrl={imageUrl} />
           }
         </Button>
       </div>
