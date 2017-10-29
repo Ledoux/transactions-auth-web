@@ -5,7 +5,6 @@ import TourButton from './TourButton'
 
 const TourSlide = ({ email,
   firstName,
-  helpersCollectionName,
   imageUrl,
   lastName,
   modeName,
@@ -26,7 +25,7 @@ const TourSlide = ({ email,
             }
         </div>
         <TourButton email={email}
-          helpersCollectionName={helpersCollectionName}
+          modeName={modeName}
           path={path}
           text='login' />
       </div>
