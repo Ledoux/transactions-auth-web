@@ -11,8 +11,8 @@ const ToursSection = ({ path,
 }) => {
   return (
     <Section extraClass='tours-section center'>
-      <p className='tours-section__title h1 bold mb2'>
-        Take a tour
+      <p className='tours-section__title h1 bold px2'>
+        click here to browse the platform logged with a specific mode
       </p>
       <Carousel slides={slides}
         slideRenderFn={props => <TourSlide path={path} {...props} /> } />

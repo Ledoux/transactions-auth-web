@@ -57,28 +57,36 @@
 
 .tour-slide {
   border-radius: 0.25rem;
-  height: 55vh;
+  min-height: 15rem;
   overflow-y: hidden;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
-  padding-top: 7.5rem;
   transition: all 0.4s ease-out; }
   @media (min-width: 52em) {
     .tour-slide {
       margin-left: auto;
       margin-right: auto;
       width: 50%; } }
-  .tour-slide__left__title {
+  .tour-slide__preview__left__title {
     color: #4a4a4a;
     margin-bottom: 1rem; }
-  .tour-slide__right__avatar {
+  .tour-slide__preview__right__avatar {
     height: 5rem;
     width: 5rem; }
+  .tour-slide__signin__available {
+    color: #DD2C00;
+    font-weight: 500;
+    height: 2rem; }
 
 .tours-section {
-  height: 90vh; }
+  min-height: calc(100vh - 5rem); }
   .tours-section__title {
     color: #4a4a4a; }
+    @media (min-width: 52em) {
+      .tours-section__title {
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%; } }
 
 .account-page {
   color: #4a4a4a;
