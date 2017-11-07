@@ -13,6 +13,7 @@ const TourSlide = ({ email,
   lastName,
   modeName,
   path,
+  text,
   tour
 }) => {
   return (
@@ -52,7 +53,7 @@ const TourSlide = ({ email,
           email={email}
           modeName={modeName}
           path={path}
-          text={`take a tour as ${vowelTest.test(modeName[0]) ? 'an' : 'a'} ${modeName}`} />
+          text={text || `take a tour as ${vowelTest.test(modeName[0]) ? 'an' : 'a'} ${modeName}`} />
       </div>
     </div>
   )

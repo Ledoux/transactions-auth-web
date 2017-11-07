@@ -111,7 +111,7 @@ const SignForm = ({ data,
           isSignup && (
             <div className='center'>
               Already have an account?{' '}
-              <Link href={`${action}${returnTo ? ('?returnTo=' + returnTo) : ''}`} >
+              <Link href={`/signin${returnTo ? ('?returnTo=' + returnTo) : ''}`} >
                 Sign In
               </Link>
             </div>

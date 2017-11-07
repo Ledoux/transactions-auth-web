@@ -1,10 +1,14 @@
 .tours-section {
   min-height: calc(100vh - #{$header-height});
+  padding-top: 5rem;
   &__title {
     color: $dark-font-color;
-    @media (min-width: $md) {
-      margin-left: auto;
-      margin-right: auto;
+    font-size: 26px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    @media (min-width: $sm) {
+      font-size: 30px;
       width: 50%;
     }
   }

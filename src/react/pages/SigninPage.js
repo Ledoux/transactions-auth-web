@@ -3,10 +3,10 @@ import { SigninPage as withState } from 'transactions-user-state'
 
 import SignForm from '../components/SignForm'
 
-const SigninPage = ({ api,
-  data,
+const SigninPage = ({ data,
   message,
-  returnTo
+  returnTo,
+  signPath
 }) => {
   return (
     <main className='page signin-page main'>
@@ -17,7 +17,7 @@ const SigninPage = ({ api,
         endpoint='signin'
         message={message}
         returnTo={returnTo}
-        routePath={api && api.signPath} />
+        routePath={signPath} />
     </main>
   )
 }

@@ -62,7 +62,7 @@
   padding-left: 2.5rem;
   padding-right: 2.5rem;
   transition: all 0.4s ease-out; }
-  @media (min-width: 52em) {
+  @media (min-width: 40em) {
     .tour-slide {
       margin-left: auto;
       margin-right: auto;
@@ -79,13 +79,17 @@
     height: 2rem; }
 
 .tours-section {
-  min-height: calc(100vh - 5rem); }
+  min-height: calc(100vh - 5rem);
+  padding-top: 5rem; }
   .tours-section__title {
-    color: #4a4a4a; }
-    @media (min-width: 52em) {
+    color: #4a4a4a;
+    font-size: 26px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%; }
+    @media (min-width: 40em) {
       .tours-section__title {
-        margin-left: auto;
-        margin-right: auto;
+        font-size: 30px;
         width: 50%; } }
 
 .account-page {
