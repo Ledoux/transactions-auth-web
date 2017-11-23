@@ -5,6 +5,7 @@ import { TourButton as withState } from 'transactions-user-state'
 
 const TourButton =({ className,
   disabled,
+  modeName,
   onTourClick,
   text
 }) => {
@@ -13,6 +14,7 @@ const TourButton =({ className,
       'button--disabled': disabled
     })}
       disabled={disabled}
+      id={`button--${modeName}`}
       onClick={onTourClick} >
       { text }
     </Button>
