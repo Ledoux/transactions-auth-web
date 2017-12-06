@@ -9,8 +9,7 @@ import { Avatar,
 import LogoutLink from '../components/LogoutLink'
 
 const AccountPage = props => {
-  const {
-    active,
+  const { active,
     api,
     email,
     dispatch,
@@ -18,20 +17,15 @@ const AccountPage = props => {
     firstName,
     id,
     imageUrl,
+    isUpload,
     lastName,
     request,
-    signPath,
-    showModalWarning,
-    state
+    showModalWarning
   } = props
-  const { isUpload } = state
   return (
     <main className='page account-page main'>
       <div className='account-page__title'>
-        {firstName} {lastName} <LogoutLink
-          className='logout-link account-page__logout'
-          signPath={api.signPath}
-        />
+        {firstName} {lastName} <LogoutLink className='logout-link account-page__logout' />
       </div>
       <div className='account-page__control'>
         {
